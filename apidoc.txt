@@ -1,0 +1,255 @@
+schema:Movie
+attributes:title,year,director,run_time,language,genre,producer
+
+1)API for listing all movies
+    
+    url:localhost:8000/api/movies/
+
+    method:GET
+
+    body:nil
+
+    status:pending
+
+2)API for creating a movie
+
+    url:localhost:8000/api/movies/
+
+    method:POST
+
+    body:{
+        "title":"movie title",
+        "year":"movie year",
+        "director":"movie director",
+        "run_time":"movie run_time",
+        "language":"movie language",
+        "genre":"movie genre",
+        "producer":"producer"
+        }
+
+    status:pending
+
+3)API for updating movie
+
+    url:localhost:8000/api/movies/{id}/
+
+    method:PUT
+
+    body:{
+        "title":"movie title",
+        "year":"movie year",
+        "director":"movie director",
+        "run_time":"movie run_time",
+        "language":"movie language",
+        "genre":"movie genre",
+        "producer":"producer"
+        }
+
+    status:pending
+
+4)API for detail movie
+
+    url:localhost:8000/api/movies/{id}/
+
+    method:get
+
+    body:nil
+
+    status:pending
+
+5)API for delete a movie
+
+    url:localhost:8000/api/movies/{id}/
+
+    method:DELETE
+
+    body:nil
+
+    status:pending
+
+6)API for listing all languages
+
+    url:localhost:8000/api/movies/languages
+
+    method:GET
+
+    body:nill
+
+    
+
+
+step1)
+
+install djangorestframework
+
+>>>pip install djangorestframework
+
+step2)
+
+settings.py
+
+installed_apps=[
+    "rest_framework"
+]
+
+step3)
+
+creating views
+
+    rest_framework>views.py> class APIView
+
+    rest_framework>response.py>class Response   
+    
+    class MovieListCreateView(APIView):
+
+        def get(self,request,*args,**kwargs):
+
+            //logic for returning all movies
+
+            //Response class is responsible for converting python native type
+            //(list,set,tuple,dictionary)to JSON
+
+            return Response(data={"message":"movie list"}) 
+
+        def post(self,request,*args,**kwargs):
+
+            //logic for adding a new movie
+
+            return Response(data={"message":"moviie create"})
+
+class MovieDetailUpdateDeleteView(APIView):
+
+    def get(self,request,*args,**kwargs):
+
+        extract id from url and returnmoviedetail with movieid=id
+
+        return Response(data={"message"="movie detail"})
+
+    def put(self,request,*args,**kwargs):
+
+        extract id from url and update MovieDetail
+
+        return Response(data={"message"="movie update"})
+
+    def delete(self,request,*args,**kwargs):
+
+        extract id from url and Movie delete
+
+        return Response(data={"message"="movie delete"})
+
+
+Serializer
+
+Serialization is the process of converting from python native type to complex data type like queryset
+
+#pythonnative type to queryset(deserilization)
+#QS to pythonnative type(serialization)
+
+
+creating Serializer
+
+>api>serializer.py
+
+import serializer from rest_framework
+
+rest_framework>Serializer.py>
+                             1)class Serializer
+                             2)class ModelSerializer
+
+from myapp.models import Movie
+
+class MovieSerializer(serializers.ModelSerializer):
+
+    class Meta:
+
+        model=Movie
+
+        field="__all__"
+
+
+schema:Actor
+attributes:name,age,picture,gender
+
+1)API for listing all actors
+
+url:localhost:8000/api/actors/
+
+method:GET
+
+body:nill
+
+status:pending
+
+2)API for create a actor
+
+url:localhost:8000/api/actors/
+
+method:POST
+
+body:{
+    name:"actor name"
+    age:"actor age"
+    picture:"actor picture"
+    gender:"actor gender"
+}
+
+status:pending
+
+3)API for detail a actor
+
+url:localhost:8000/api/actors/{id}/
+
+method:GET
+
+body:nill
+
+status:pending
+
+4)API for update a actor detail
+
+url:localhost:8000/api/actors/{id}/
+
+method:PUT
+
+body:{
+    name:"actor name"
+    age:"actor age"
+    picture:"actor picture"
+    gender:"actor gender"
+}
+
+status:pending
+
+5)API for delete a actor
+
+url:localhost:8000/api/actors/{id}/
+
+method:DELETE
+
+body:nill
+
+status:pending
+
+
+api call for adding new track
+
+url:localhost:8000/api/albams/{id}/add_track/
+
+method:POST
+
+body:{title,duration,track_number,singer,genre}
+
+employee(id,name,department,salary)
+employee CURD API
+task(id,title,description,completed_date,assigned_date,status,employee_obj(fk))
+
+schema:Review
+attributes:{id,comment,rating,user,albam_object,created_date}
+
+1)API for adding a Review
+
+url:localhost:8000/api/albams/{id}/add_review
+
+method:POST
+
+body:{comment,rating,user}

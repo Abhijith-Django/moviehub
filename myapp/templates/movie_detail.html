@@ -1,0 +1,23 @@
+{%extends 'base.html'%}
+
+{%block title_block%}
+   <title>Movie-Detail</title>
+{%endblock%}
+
+{%block main_block%}
+<div class="container mt-5 d-flex justify-content-center">
+  <div class="card" style="width: 18rem;">
+    <div class="card-header">
+      Title:{{data.title}}
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Year={{data.year}}</li>
+      <li class="list-group-item">Run_time:{{data.run_time}}</li>
+      <li class="list-group-item">Language:{{data.language}}</li>
+      <li class="list-group-item">Director:{{data.director}}</li>
+      <li class="list-group-item">Genre:{{data.genre}}</li>
+      <li class="list-group-item">Producer:{{data.producer}}</li>
+    </ul>
+  </div>
+</div>
+{%endblock%}

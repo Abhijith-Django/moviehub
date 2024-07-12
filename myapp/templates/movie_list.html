@@ -1,0 +1,38 @@
+{%extends 'base.html'%}
+
+{%block title_block%}
+   <title>Movie-List</title>
+{%endblock%}
+{%block main_block%}
+<div class="container border p-4 shadow mt-5">
+    <div class="my-2">
+        <a href="{%url 'movie-create'%}" class="btn btn-primary">Add New Movie</a>
+    </div>
+    <table class="table">
+        <tr class="fw-bold">
+            <th>Title</th>
+            <th>Year</th>
+            <th>Director</th>
+            <th>Language</td>
+            <th>Runtime</th>
+            <th>Genre</th>
+            <th>Action</th>
+        </tr>
+        {%for m in data%}
+            <tr>
+                <td>{{m.title}}</td>
+                <td>{{m.year}}</td>
+                <td>{{m.director}}</td>
+                <td>{{m.language}}</td>
+                <td>{{m.run_time}}</td>
+                <td>{{m.genre}}</td>
+                <td>
+                    <a href="{%url 'movie-detail' m.id%}" class="btn btn-outline-primary">View</a>
+                    <a href="{%url 'movie-delete' m.id%}" class="btn btn-outline-warning">Delete</a>
+                    <a href="{%url 'movie-update' m.id%}" class="btn btn-outline-success">Edit</a>
+                </td>
+            </tr>
+        {%endfor%}
+    </table>
+</div>
+{%endblock%}
